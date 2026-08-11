@@ -1,4 +1,4 @@
-#  Automatización de pruebas con Selenium para Urban Routes App
+# Automatización de pruebas con Selenium para Urban Routes App
 
 ## 📌 Descripción
 
@@ -67,6 +67,12 @@ qa-project-Urban-Routes-es/
 
 ---
 
+## 📊 Resultados esperados
+
+- Los 9 tests establecidos para esta prueba se ejecutaron correctamente y finalizaron con éxito.
+
+---
+
 ## 📚 Lo que aprendí
 
 Durante el desarrollo de este proyecto aprendí y reforcé diferentes conceptos relacionados con la automatización de pruebas:
@@ -77,15 +83,38 @@ Durante el desarrollo de este proyecto aprendí y reforcé diferentes conceptos 
 - Implementación del patrón **Page Object Model (POM)** para organizar los localizadores y métodos de la página.
 - Implementación de métodos get, set y click para interactuar con los elementos de la aplicación.
 - Utilización de **WebDriverWait** y `Expected Conditions` para trabajar con elementos que aparecen dinámicamente.
-- Realizar las importaciones necesarias para la configuración y ejecución de las pruebas automatizadas.
+- Realización de las importaciones necesarias para la configuración y ejecución de las pruebas automatizadas.
 - Uso de **Pytest** para ejecutar y validar pruebas automatizadas.
 - Uso de **Git y GitHub** para versionar y documentar el proyecto.
 
+---
 
-## Tecnologías utilizadas
-Python 3.12.6
-pytest 9.1.1
-Selenium 4.46.0
-Git
-GitHub
-Visual Studio Code
+
+## ▶️ Instrucciones para ejecutar las pruebas
+
+### Ejecutar desde VS Code (Test Explorer)
+
+Ejecute las pruebas de forma visual usando la extensión de Testing de VS Code:
+
+1.Abre el panel **Testing** desde la barra lateral (ícono del tubo de ensayo).
+2. VS Code detectará automáticamente los tests definidos en `test_urban_routes.py`.
+3. Haz clic en el ícono ▶️ junto a `TestUrbanRoutes` para ejecutar todos los tests, o junto a un test individual para ejecutarlo solo.
+4. Los resultados se muestran con ✅ (pasó) o ❌ (falló) junto a cada test, junto con el tiempo total de ejecución.
+5.Tambien ensaye desde la terminal de visual con el nombre del archivo que contiene el test **pytest test_urban_routes.py**
+
+## 🛠️ Tecnologías utilizadas
+
+- Python 3.12.6
+- Pytest 9.1.1
+- Selenium 4.46.0
+- Git
+- GitHub
+- Visual Studio Code
+
+---
+
+## ✍️ Autora
+
+**Lorena Cristina Sucerquia**
+
+Proyecto desarrollado como práctica de automatización de pruebas, utilizando Python, Selenium y Pytest.
