@@ -11,20 +11,25 @@ class UrbanRoutesPage:
     to_field = (By.ID, 'to')
     request_taxi_button = (By.CSS_SELECTOR,'.button.round')
     comfort_icon = (By.XPATH,"//div[@class='tcard-title' and text()='Comfort']")
+    selected_tariff_title = (By.XPATH, "//div[contains(@class,'tcard active')]//div[@class='tcard-title']")
     phone_field = (By.CSS_SELECTOR,".np-text")
     phone_input = (By.ID,"phone")
     phone_next_button = (By.XPATH,"//button[text()='Siguiente']")
     phone_code_field = (By.ID,"code")
     confirm_code_button = (By.XPATH,"//button[@type='submit' and normalize-space(text())='Confirmar']")
+    phone_number_display = (By.CSS_SELECTOR, ".np-button.filled .np-text")
     payment_method_field = (By.CSS_SELECTOR,"div.pp-button.filled")
     add_card_field = (By.XPATH,"//div[@class='pp-title' and text()='Agregar tarjeta']")
     card_number_field = (By.ID,"number")
     card_cvv_field = (By.CSS_SELECTOR, ".card-code-input #code")
     add_card_button = (By.XPATH,"//button[@type='submit' and text()='Agregar']")
+    current_payment_method_text = (By.CSS_SELECTOR, "div.pp-button.filled .pp-value-text")
     close_payment_method_button = (By.XPATH,"//div[@class='section active'][.//div[@class='head' and text()='Método de pago']]//button[@class='close-button section-close']")
     driver_message_field = (By.ID,"comment")
     blanket_and_tissues_toggle = (By.XPATH,"//div[@class='r-sw-container'][.//div[text()='Manta y pañuelos']]//span[@class='slider round']")
+    blanket_and_tissues_input = (By.XPATH, "//div[@class='r-sw-container'][.//div[text()='Manta y pañuelos']]//input")
     ice_cream_plus =(By.XPATH,"//div[contains(@class,'r-counter')][.//div[contains(@class,'r-counter-label') and text()='Helado']]//div[contains(@class,'counter-plus')]")
+    ice_cream_counter_value = (By.XPATH, "//div[contains(@class,'r-counter')][.//div[contains(@class,'r-counter-label') and text()='Helado']]//div[contains(@class,'counter-value')]")
     order_taxi_button =(By.CSS_SELECTOR,".smart-button")
     taxi_modal = (By.CSS_SELECTOR,".order-body")
     driver_info_modal =(By.CSS_SELECTOR,".order-number")
@@ -73,6 +78,11 @@ class UrbanRoutesPage:
     def click_comfort_icon(self):
          self.get_comfort_icon().click()
 
+    def get_selected_tariff(self):
+          return WebDriverWait(self.driver, 5).until(
+               EC.visibility_of_element_located(self.selected_tariff_title)
+          ).text
+
      
     def select_comfort_tariff(self):
          self.click_request_taxi_button()
@@ -118,6 +128,12 @@ class UrbanRoutesPage:
          )
     def clik_confirm_code_button(self):
          self.get_confirm_code_button().click()
+
+    def get_phone_number_display(self):
+         return WebDriverWait(self.driver,5).until(
+              EC.visibility_of_element_located(self.phone_number_display)
+         ).text
+
 
     def set_phone(self,phone_number):
          self.click_phone_field()
@@ -168,7 +184,7 @@ class UrbanRoutesPage:
     
     def click_add_card_button(self):
          self.get_add_card_button().click()
-         
+
 
     def get_close_payment_method_button(self):
          return WebDriverWait(self.driver,5).until(
@@ -176,6 +192,13 @@ class UrbanRoutesPage:
          )
     def click_close_payment_method_button(self):
          self.get_close_payment_method_button().click()
+
+
+    def get_current_payment_method_text(self):
+          return WebDriverWait(self.driver,5).until(
+               EC.visibility_of_element_located(self.current_payment_method_text)
+          ).text
+         
 
     def add_credit_card(self,card_number,card_code):
          self.click_payment_method_field()
@@ -201,20 +224,32 @@ class UrbanRoutesPage:
     def click_blanket_and_tissues_toggle(self):
          self.get_blanket_and_tissues_toggle().click()
 
+    def get_blanket_and_tissues_checked(self):
+          return self.driver.find_element(*self.blanket_and_tissues_input).get_property('checked')
+
      #metodos para pedir 2 helados
     def get_ice_cream_plus(self):
          return WebDriverWait(self.driver,5).until(
               EC.element_to_be_clickable(self.ice_cream_plus)
          )
+    
+         
     def click_ice_cream_plus(self):
          self.get_ice_cream_plus().click()
          self.get_ice_cream_plus().click()
+
+    def get_ice_cream_counter_value(self):
+         return int(WebDriverWait(self.driver,5).until(
+              EC.visibility_of_element_located(self.ice_cream_counter_value)
+         ).text)
+
     
      #metodos para que Aparezca el modal para buscar un taxi.
     def get_order_taxi_button(self):
          return WebDriverWait(self.driver,5).until(
               EC.element_to_be_clickable(self.order_taxi_button)
          )
+    
     def click_order_taxi_button(self):
          self.get_order_taxi_button().click()
 
